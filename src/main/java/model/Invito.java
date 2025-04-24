@@ -1,5 +1,3 @@
-package model;
-
 public class Invito {
     public enum StatoRichiesta {
         PENDING, ACCEPTED, DECLINED

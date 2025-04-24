@@ -1,5 +1,3 @@
-package model;
-
 public class Utente {
     protected int id;
     protected String username;

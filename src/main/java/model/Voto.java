@@ -1,5 +1,3 @@
-package model;
-
 public class Voto {
         private Giudice giudice;
         private Team team;
