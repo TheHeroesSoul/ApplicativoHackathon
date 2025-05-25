@@ -1,3 +1,5 @@
+package main.java.model;
+
 public class Problema {
     private String descrizione;
     private Hackathon hackathon;

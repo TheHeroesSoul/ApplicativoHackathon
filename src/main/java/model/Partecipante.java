@@ -1,3 +1,5 @@
+package main.java.model;
+
 public class Partecipante extends Utente {
 
     public Partecipante(int id, String username, String email, String nome, String cognome) {

@@ -1,3 +1,5 @@
+package main.java.model;
+
 public class Invito {
     public enum StatoRichiesta {
         PENDING, ACCEPTED, DECLINED

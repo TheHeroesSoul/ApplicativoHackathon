@@ -1,1 +1,3 @@
-Inserire in questa cartella il class diagram di dominio, un eventuale documento che spieghi il significato delle classi e il nome o indirizzo della repository github che contiene il codice realizzato.
+# Progetto: Hackaton
+
+link: https://github.com/TheHeroesSoul/Hackathon_mvn

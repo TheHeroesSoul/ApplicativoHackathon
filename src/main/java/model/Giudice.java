@@ -1,3 +1,5 @@
+package main.java.model;
+
 public class Giudice extends Utente {
 
     public Giudice(int id, String username, String email, String nome, String cognome) {

@@ -1,9 +1,16 @@
-import model.*;
+package main.java;
+
+import main.java.controller.Controller;
+import main.java.gui.Login;
+import main.java.model.*;
+
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
         Organizzatore organizzatore = new Organizzatore(1, "GiovaTheFrog", "Giovanni.Rana@outlook.com", "Giovanni", "Rana");
 
         Hackathon hackathon = organizzatore.creaHackathon(
