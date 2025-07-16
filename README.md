@@ -15,7 +15,7 @@ Durante l'hackathon, i team lavorano separatamente per risolvere il problema e d
 ## Studenti con matricola:
 - N86005440([Lista Lorenzo](https://github.com/TheHeroesSoul))
 - N86005645([Giulio Giangrande](https://github.com/imgg98))
-- N86005493([Francesco Giuliani](https://github.com/elipnotic))
+- ~~N86005493([Francesco Giuliani](https://github.com/elipnotic))~~
 
 ## Prima Parte dell'Homework
 ### Ogni gruppo di studenti dovrà produrre:
