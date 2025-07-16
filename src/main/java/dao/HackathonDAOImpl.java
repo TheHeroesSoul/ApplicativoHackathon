@@ -33,7 +33,7 @@ public class HackathonDAOImpl implements HackathonDAO {
             stmt.setDate(3, Date.valueOf(hackathon.getDataInizio()));
             stmt.setDate(4, Date.valueOf(hackathon.getDataFine()));
             stmt.setInt(5, hackathon.getMaxIscritti());
-            //stmt.setInt(6, hackathon.getDocumenti());
+
             stmt.setDate(7, Date.valueOf(hackathon.getInizioIscrizioni()));
             stmt.setString(8, hackathon.getCreatore());
             stmt.setString(9, hackathon.getProblema().getDescrizione());
@@ -266,7 +266,7 @@ public class HackathonDAOImpl implements HackathonDAO {
         }
     }
 
-    // Metodi di utilità privati
+
     private Hackathon createHackathonFromResultSet(ResultSet rs) throws SQLException {
         return new Hackathon(
             rs.getInt("id"),
