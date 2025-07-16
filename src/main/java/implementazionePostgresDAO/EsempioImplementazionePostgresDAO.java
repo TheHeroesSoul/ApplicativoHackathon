@@ -1,12 +1,11 @@
-package implementazioniPostgresDAO;
+package main.java.implementazionePostgresDAO;
+import main.java.dao.implementazionePostgresDAO;
+import main.java.database.ConnessioneDatabase;
 
-import Database.ConnessioneDatabase;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
-public class EsempioImplementazionePostgresDAO implements EsempioDAO {
+public class EsempioImplementazionePostgresDAO implements implementazionePostgresDAO {
 
 	private Connection connection;
 
@@ -15,13 +14,13 @@ public class EsempioImplementazionePostgresDAO implements EsempioDAO {
 			connection = ConnessioneDatabase.getInstance().connection;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			System.err.println("Errore nella connessione al database: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
-	public void esempioQuery() {
+	public void esempioImplementazionePostgresDAO() {
 
 	}
-
 }

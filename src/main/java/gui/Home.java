@@ -1,106 +1,102 @@
 package main.java.gui;
 
-import main.java.model.Utente;
-
+import main.java.controller.Controller;
+import main.java.model.Hackathon;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.util.List;
 
-public class Home extends JFrame {
-    private JPanel mainPanel;
-    private JButton infoUtenteButton;
+/**
+ * The type Home.
+ */
+public class Home {
+    private JButton logoutButton;
+    private JList<Hackathon> list1;
     private JButton creaHackathonButton;
-    private JButton logOutButton;
-    private JTable table1; // Hackathons
-    private JTable table2; // Inviti
+    private JFrame frame;
+    private DefaultListModel<Hackathon> listModel;
 
-    private Utente utente;
+    /**
+     * Instantiates a new Home.
+     *
+     * @param controller      the controller
+     * @param isAuthenticated the is authenticated
+     */
+    public Home(Controller controller, boolean isAuthenticated) {
+        frame = new JFrame("Home");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 500);
 
-    public Home(Utente utente) {
-        this.utente = utente;
+        JPanel mainPanel = new JPanel(new BorderLayout());
 
-        // Pannello principale
-        mainPanel = new JPanel(new BorderLayout());
+        listModel = new DefaultListModel<>();
+        aggiornaLista(controller.getHackathonList());
+        list1 = new JList<>(listModel);
+        mainPanel.add(new JScrollPane(list1), BorderLayout.CENTER);
 
-        // Pannello con i bottoni in alto
-        JPanel topPanel = new JPanel();
-        infoUtenteButton = new JButton("Info Utente");
+        JPanel buttonPanel = new JPanel();
+        logoutButton = new JButton("Logout");
         creaHackathonButton = new JButton("Crea Hackathon");
-        logOutButton = new JButton("Logout");
-        topPanel.add(infoUtenteButton);
-        topPanel.add(creaHackathonButton);
-        topPanel.add(logOutButton);
+        buttonPanel.add(logoutButton);
+        buttonPanel.add(creaHackathonButton);
 
-        // Tabelle
-        table1 = new JTable();
-        table2 = new JTable();
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Split tra hackathon e inviti
-        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
-                new JScrollPane(table1),
-                new JScrollPane(table2));
-        splitPane.setDividerLocation(250);
+        frame.setContentPane(mainPanel);
+        frame.setVisible(true);
 
-        mainPanel.add(topPanel, BorderLayout.NORTH);
-        mainPanel.add(splitPane, BorderLayout.CENTER);
-
-        setTitle("Home - " + utente.getUsername());
-        setContentPane(mainPanel);
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
-        inizializzaTabelle();
-        configuraAzioni();
-    }
-
-    private void inizializzaTabelle() {
-        String[] colonne = {"Nome", "Tema"};
-
-        Object[][] datiInviti = {
-                {"Hackathon AI", "Intelligenza Artificiale"},
-                {"Hackathon Cyber", "Cybersecurity"}
-        };
-
-        Object[][] datiHackathon = {
-                {"Hackathon Fintech", "Finanza"},
-                {"Hackathon Green", "Sostenibilità"}
-        };
-
-        table2.setModel(new DefaultTableModel(datiInviti, colonne));
-        table1.setModel(new DefaultTableModel(datiHackathon, colonne));
-    }
-
-    private void configuraAzioni() {
-        infoUtenteButton.addActionListener(e -> {
-            new InfoUtente(utente).setVisible(true);
+        logoutButton.addActionListener(e -> {
+            frame.dispose();
+            controller.showLogin(isAuthenticated);
         });
 
         creaHackathonButton.addActionListener(e -> {
-            new CreazioneHackathon(utente).setVisible(true);
-        });
 
-        logOutButton.addActionListener(e -> {
-            dispose();
-            System.exit(0);
+            main.java.model.Utente utente = controller.getAuthenticatedUser();
+            CreazioneHackathon dialog = new CreazioneHackathon(utente, controller);
+            dialog.setVisible(true);
+            aggiornaLista(controller.getHackathonList());
         });
-
-        table1.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2 && table1.getSelectedRow() != -1) {
-                    String nomeHackathon = (String) table1.getValueAt(table1.getSelectedRow(), 0);
-                    new GestioneHackathon(utente, nomeHackathon).setVisible(true);
+        list1.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                Hackathon selezionato = list1.getSelectedValue();
+                if (selezionato != null) {
+                    controller.mostraPaginaHackathon(selezionato);
                 }
             }
         });
+
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Utente u = new Utente("MarioRossi");
-            new Home(u).setVisible(true);
-        });
+    /**
+     * Nascondi.
+     */
+    public void nascondi() {
+        frame.setVisible(false);
     }
+
+    /**
+     * Mostra.
+     */
+    public void mostra() {
+        frame.setVisible(true);
+    }
+
+    /**
+     * Gets frame.
+     *
+     * @return the frame
+     */
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    private void aggiornaLista(List<Hackathon> hackathons) {
+        listModel.clear();
+        for (Hackathon h : hackathons) {
+            listModel.addElement(h);
+        }
+    }
+
+
 }

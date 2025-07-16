@@ -1,10 +1,13 @@
 package main.java.gui;
 
 import main.java.model.Utente;
-
 import javax.swing.*;
-import java.awt.*;
 
+import main.java.controller.Controller;
+
+/**
+ * The type Creazione hackathon.
+ */
 public class CreazioneHackathon extends JDialog {
     private JTextField titoloField;
     private JTextField sedeField;
@@ -14,16 +17,24 @@ public class CreazioneHackathon extends JDialog {
     private JTextField maxComponentiField;
     private JTextField dataInizioIscrizioniField;
     private JTextArea problemaArea;
-    private JButton invitaGiudiceButton;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JPanel contentPane;
+    private Controller controller;
 
-    public CreazioneHackathon(Utente utente) {
+    /**
+     * Instantiates a new Creazione hackathon.
+     *
+     * @param utente     the utente
+     * @param controller the controller
+     */
+    public CreazioneHackathon(Utente utente, Controller controller) {
         setTitle("Creazione Hackathon");
         setSize(400, 500);
         setLocationRelativeTo(null);
         setModal(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.controller = controller;
 
         JPanel contentPane = new JPanel();
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
@@ -41,13 +52,13 @@ public class CreazioneHackathon extends JDialog {
 
         contentPane.add(Box.createVerticalStrut(10));
 
-        contentPane.add(new JLabel("Data Inizio:"));
+        contentPane.add(new JLabel("Data Inizio (dd/MM/yyyy):"));
         dataInizioField = new JTextField();
         contentPane.add(dataInizioField);
 
         contentPane.add(Box.createVerticalStrut(10));
 
-        contentPane.add(new JLabel("Data Fine:"));
+        contentPane.add(new JLabel("Data Fine (dd/MM/yyyy):"));
         dataFineField = new JTextField();
         contentPane.add(dataFineField);
 
@@ -65,7 +76,7 @@ public class CreazioneHackathon extends JDialog {
 
         contentPane.add(Box.createVerticalStrut(10));
 
-        contentPane.add(new JLabel("Data Inizio Iscrizioni:"));
+        contentPane.add(new JLabel("Data Inizio Iscrizioni (dd/MM/yyyy):"));
         dataInizioIscrizioniField = new JTextField();
         contentPane.add(dataInizioIscrizioniField);
 
@@ -78,9 +89,6 @@ public class CreazioneHackathon extends JDialog {
 
         contentPane.add(Box.createVerticalStrut(10));
 
-        invitaGiudiceButton = new JButton("Invita Giudice");
-        contentPane.add(invitaGiudiceButton);
-
         contentPane.add(Box.createVerticalStrut(10));
 
         JPanel buttonsPanel = new JPanel();
@@ -90,26 +98,28 @@ public class CreazioneHackathon extends JDialog {
         buttonsPanel.add(buttonCancel);
 
         contentPane.add(buttonsPanel);
-
-        buttonOK.addActionListener(e -> onOK());
         buttonCancel.addActionListener(e -> onCancel());
 
         setContentPane(contentPane);
-    }
 
-    private void onOK() {
-        dispose();
+        buttonOK.addActionListener(e -> {
+            boolean creato = controller.creaHackathonDaForm(
+                    titoloField.getText(),
+                    sedeField.getText(),
+                    dataInizioField.getText(),
+                    dataFineField.getText(),
+                    maxIscrittiField.getText(),
+                    maxComponentiField.getText(),
+                    dataInizioIscrizioniField.getText(),
+                    problemaArea.getText(),
+                    this
+            );
+            if (creato) dispose();
+        });
     }
 
     private void onCancel() {
         dispose();
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Utente u = new Utente("pippoepluto");
-            CreazioneHackathon dialog = new CreazioneHackathon(u);
-            dialog.setVisible(true);
-        });
-    }
 }
