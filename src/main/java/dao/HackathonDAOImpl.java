@@ -1,11 +1,11 @@
-package main.java.dao;
+package dao;
 
-import main.java.database.ConnessioneDatabase;
-import main.java.model.Hackathon;
-import main.java.model.Team;
-import main.java.model.Utente;
-import main.java.model.Problema;
-import main.java.model.*;
+import database.ConnessioneDatabase;
+import model.Hackathon;
+import model.Team;
+import model.Utente;
+import model.Problema;
+import model.*;
 
 import java.sql.*;
 import java.time.LocalDate;

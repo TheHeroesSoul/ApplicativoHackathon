@@ -1,8 +1,8 @@
-package main.java.gui;
+package gui;
 
-import main.java.controller.Controller;
-import main.java.model.Hackathon;
-import main.java.model.Team;
+import controller.Controller;
+import model.Hackathon;
+import model.Team;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

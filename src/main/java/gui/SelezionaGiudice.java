@@ -1,10 +1,10 @@
-package main.java.gui;
+package gui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-import main.java.model.Hackathon;
-import main.java.model.Utente;
+import model.Hackathon;
+import model.Utente;
 
 /**
  * The type Seleziona giudice.

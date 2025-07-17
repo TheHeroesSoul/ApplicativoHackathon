@@ -1,6 +1,6 @@
-package main.java.gui;
+package gui;
 
-import main.java.model.Utente;
+import model.Utente;
 
 import javax.swing.*;
 import java.awt.*;

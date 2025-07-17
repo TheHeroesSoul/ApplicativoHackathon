@@ -1,7 +1,7 @@
-package main.java;
+package main;
 
-import main.java.model.Hackathon;
-import main.java.model.Problema;
+import model.Hackathon;
+import model.Problema;
 
 import java.time.LocalDate;
 

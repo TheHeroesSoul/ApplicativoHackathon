@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 /**
  * Rappresenta un problema da risolvere all'interno di un hackathon.

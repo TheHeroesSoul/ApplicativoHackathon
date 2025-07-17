@@ -1,6 +1,6 @@
-package main.java.dao;
+package dao;
 
-import main.java.model.Utente;
+import model.Utente;
 import java.sql.SQLException;
 import java.util.List;
 

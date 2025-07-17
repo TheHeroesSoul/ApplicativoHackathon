@@ -1,8 +1,8 @@
-package main.java.gui;
+package gui;
 
-import main.java.controller.Controller;
-import main.java.model.Hackathon;
-import main.java.model.Utente;
+import controller.Controller;
+import model.Hackathon;
+import model.Utente;
 
 import javax.swing.*;
 import java.awt.*;

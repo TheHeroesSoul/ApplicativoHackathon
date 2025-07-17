@@ -1,7 +1,9 @@
-package main.java.gui;
+package gui;
 
-import main.java.controller.Controller;
-import main.java.model.Hackathon;
+import controller.Controller;
+import model.Hackathon;
+import model.Utente;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -52,7 +54,7 @@ public class Home {
 
         creaHackathonButton.addActionListener(e -> {
 
-            main.java.model.Utente utente = controller.getAuthenticatedUser();
+            Utente utente = controller.getAuthenticatedUser();
             CreazioneHackathon dialog = new CreazioneHackathon(utente, controller);
             dialog.setVisible(true);
             aggiornaLista(controller.getHackathonList());

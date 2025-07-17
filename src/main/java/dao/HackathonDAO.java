@@ -1,8 +1,8 @@
-package main.java.dao;
+package dao;
 
-import main.java.model.Hackathon;
-import main.java.model.Team;
-import main.java.model.Utente;
+import model.Hackathon;
+import model.Team;
+import model.Utente;
 
 import java.sql.SQLException;
 import java.util.List;

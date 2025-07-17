@@ -1,8 +1,8 @@
-package main.java.controller;
+package controller;
 
-import main.java.gui.*;
-import main.java.model.*;
-import main.java.model.Problema;
+import gui.*;
+import model.*;
+import model.Problema;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,16 +19,16 @@ import java.util.stream.Collectors;
  */
 public class Controller {
 
-    private main.java.gui.Home homeView;
+    private Home homeView;
     private static final String VALID_USERNAME = "admin";
     private static final String VALID_PASSWORD = "1234";
 
-    private main.java.gui.Login loginView;
-    private main.java.model.Utente authenticatedUser;
-    private List<main.java.model.Hackathon> hackathonList = new ArrayList<>();
-    private List<main.java.model.Utente> tuttiUtenti = new ArrayList<>();
+    private Login loginView;
+    private Utente authenticatedUser;
+    private List<Hackathon> hackathonList = new ArrayList<>();
+    private List<Utente> tuttiUtenti = new ArrayList<>();
 
-    private Map<main.java.model.Team, List<Integer>> votiPerTeam = new HashMap<>();
+    private Map<Team, List<Integer>> votiPerTeam = new HashMap<>();
 
     /**
      * Instantiates a new Controller.
@@ -36,11 +36,11 @@ public class Controller {
      * @param isAuthenticated the is authenticated
      */
     public Controller(boolean isAuthenticated) {
-        this.loginView = new main.java.gui.Login(this, isAuthenticated, tuttiUtenti);
+        this.loginView = new Login(this, isAuthenticated, tuttiUtenti);
 
-        tuttiUtenti.add(new main.java.model.Utente(0, "admin", "admin@email.com", "Admin", "Admin", "1234"));
-        tuttiUtenti.add(new main.java.model.Utente(1, "giudice1", "giudice1@email.com", "Mario", "Rossi", "pass1"));
-        tuttiUtenti.add(new main.java.model.Utente(2, "giudice2", "giudice2@email.com", "Luigi", "Verdi", "pass2"));
+        tuttiUtenti.add(new Utente(0, "admin", "admin@email.com", "Admin", "Admin", "1234"));
+        tuttiUtenti.add(new Utente(1, "giudice1", "giudice1@email.com", "Mario", "Rossi", "pass1"));
+        tuttiUtenti.add(new Utente(2, "giudice2", "giudice2@email.com", "Luigi", "Verdi", "pass2"));
         tuttiUtenti.add(new Utente(3, "giudice3", "giudice3@email.com", "Anna", "Bianchi", "pass3"));
         tuttiUtenti.add(new Utente(4, "partecipante1", "partecipante1@email.com", "Sara", "Neri", "pass4"));
         tuttiUtenti.add(new Utente(5, "partecipante2", "partecipante2@email.com", "Marco", "Gialli", "pass5"));

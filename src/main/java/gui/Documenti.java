@@ -1,7 +1,7 @@
-package main.java.gui;
+package gui;
 
-import main.java.controller.Controller;
-import main.java.model.Hackathon;
+import controller.Controller;
+import model.Hackathon;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
